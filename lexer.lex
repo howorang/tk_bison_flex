@@ -9,7 +9,7 @@ int lineno = 0;
 %option noyywrap
 
 NUM   [0-9]
-ID    [A-Z]+
+ID    [A-z]+
 NEWLINE "\n"
 WHITE "\t"," "
 
