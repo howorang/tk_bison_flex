@@ -1,17 +1,16 @@
 #include "global.h"
 
 int lookahead;
+
 void
-parse () 
-{
-  lookahead = yylex ();
-  while (lookahead != DONE)
-    
-    {
-      expr ();
-      match (';');
+parse() {
+    lookahead = yylex();
+    while (lookahead != DONE) {
+        expr();
+        match(';');
     }
 }
+
 void
 expr() {
     int t;
@@ -29,59 +28,55 @@ expr() {
                 return;
         }
 }
+
 void
-term () 
-{
-  int t;
-  factor ();
-  while (1)
-    switch (lookahead)
-      
-      {
-      case '*':
-      case '/':
-      case DIV:
-      case MOD:
-	t = lookahead;
-	match (lookahead);
-	factor ();
-	emit (t, NONE);
-	continue;
-      default:
-	return;
-      }
+term() {
+    int t;
+    factor();
+    while (1)
+        switch (lookahead) {
+            case '*':
+            case '/':
+            case DIV:
+            case MOD:
+                t = lookahead;
+                match(lookahead);
+                factor();
+                emit(t, NONE);
+                continue;
+            default:
+                return;
+        }
 }
+
 void
-factor ()
-{
-  switch (lookahead)
-    
-    {
-    case '(':
-      match ('(');
-      expr ();
-      match (')');
-      break;
-    case NUM:
-      emit (NUM, tokenval);
-      match (NUM);
-      break;
-    case ID:
-      emit (ID, tokenval);
-      match (ID);
-      break;
-    default:
-      error ("syntax error (factor)");
+factor() {
+    switch (lookahead) {
+        case '(':
+            match('(');
+            expr();
+            match(')');
+            break;
+        case NUM:
+            emit(NUM, tokenval);
+            match(NUM);
+            break;
+        case ID:
+            emit(ID, tokenval);
+            match(ID);
+            break;
+        default:
+            error("syntax error (factor)");
     }
 }
+
 void
-match (int t) 
-{
-  if (lookahead == t)
-    lookahead = yylex ();
-  
-  else
-    error ("syntax error (match)");
+match(int t) {
+    if (lookahead == t)
+        lookahead = yylex();
+
+    else
+        error("syntax error (match)");
 }
 
 

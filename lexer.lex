@@ -15,7 +15,7 @@ WHITE "\t"," "
 
 %%
 {NUM}+          {
-                    tokenval = atoi(yytext);
+                    yylval = atoi(yytext);
                     return NUM;
                 }
 {ID}            {
@@ -25,14 +25,11 @@ WHITE "\t"," "
                     {
                         p = insert (yytext, ID);
                     }
-                    tokenval = p;
+                    yylval = p;
                     return symtable[p].token;
                 }
-<<EOF>>         {
-                    return DONE;
-                }
 .               {
-                    tokenval = NONE;
+                    yylval = yytext[0];
                     return yytext[0];
                 }
 {NEWLINE}       {

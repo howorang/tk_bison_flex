@@ -12,5 +12,5 @@ add_executable(comp
         init.c
         lex.yy.c
         main.c
-        parser.c
-        symbol.c)
+        symbol.c
+        parser.tab.c)

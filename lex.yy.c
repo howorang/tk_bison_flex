@@ -389,11 +389,11 @@ static yyconst YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    7,    7,    7,    7,    7,    7,
         7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
         7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
 
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+        7,    7,    7,    7,    7,    7,    7,    7,    7,    7,
+        7,    7,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -743,7 +743,7 @@ case 1:
 YY_RULE_SETUP
 #line 17 "lexer.lex"
 {
-                    tokenval = atoi(yytext);
+                    yylval = atoi(yytext);
                     return NUM;
                 }
 	YY_BREAK
@@ -757,43 +757,39 @@ YY_RULE_SETUP
                     {
                         p = insert (yytext, ID);
                     }
-                    tokenval = p;
+                    yylval = p;
                     return symtable[p].token;
-                }
-	YY_BREAK
-case YY_STATE_EOF(INITIAL):
-#line 31 "lexer.lex"
-{
-                    return DONE;
                 }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 34 "lexer.lex"
+#line 31 "lexer.lex"
 {
-                    tokenval = NONE;
+                    yylval = yytext[0];
                     return yytext[0];
                 }
 	YY_BREAK
 case 4:
 /* rule 4 can match eol */
 YY_RULE_SETUP
-#line 38 "lexer.lex"
+#line 35 "lexer.lex"
 {
                     lineno++;
                 }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 41 "lexer.lex"
+#line 38 "lexer.lex"
 {}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 42 "lexer.lex"
+#line 39 "lexer.lex"
 ECHO;
 	YY_BREAK
-#line 797 "lex.yy.c"
+#line 791 "lex.yy.c"
+case YY_STATE_EOF(INITIAL):
+	yyterminate();
 
 	case YY_END_OF_BUFFER:
 		{
@@ -1792,6 +1788,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 42 "lexer.lex"
+#line 39 "lexer.lex"
 
 
