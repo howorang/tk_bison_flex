@@ -2,6 +2,7 @@
 %{
 #include "global.h"
 #include <stdlib.h>
+int yyerror(const char *s);
 %}
 
 %define parse.error verbose
@@ -44,7 +45,7 @@ factor:
 
 
 %%
-yyerror(char *s)
+int yyerror(const char *s)
 {
 error(s);
 printf("tokenval %d", yylval);

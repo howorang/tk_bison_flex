@@ -15,7 +15,7 @@ struct entry
 };
 extern struct entry symtable[];
 int insert (char s[], int tok);
-void error (char *m) ;
+void error (const char *m) ;
 int lookup (char s[]) ;
 void init () ;
 void emit (int t, int tval) ;
